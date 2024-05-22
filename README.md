@@ -1,2 +1,2 @@
 # react-game
-React Game
+This is the beginning of development on a React Game
