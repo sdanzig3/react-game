@@ -8,11 +8,22 @@ import CurrentScore from './CurrentScore'
 import FlyingObject from './FlyingObject';
 import StartGame from './StartGame';
 import Title from './Title';
-
+import Leaderboard from './Leaderboard'
+import { signIn } from 'auth0-web'
 
 const Canvas = (props) => {
   const gameHeight = 1200;
   const viewBox = [window.innerWidth / -2, 100 - gameHeight, window.innerWidth, gameHeight];
+  const leaderboard = [
+    { id: 'd4', maxScore: 82, name: 'Ado Kukic', picture: './photo1', },
+    { id: 'a1', maxScore: 235, name: 'Bruno Krebs', picture: './photo1', },
+    { id: 'c3', maxScore: 99, name: 'Diego Poza', picture: 'https://twitter.com/diegopoza/profile_image', },
+    { id: 'b2', maxScore: 129, name: 'Jeana Tahnk', picture: 'https://twitter.com/jeanatahnk/profile_image', },
+    { id: 'e5', maxScore: 34, name: 'Jenny Obrien', picture: 'https://twitter.com/jenny_obrien/profile_image', },
+    { id: 'f6', maxScore: 153, name: 'Kim Maida', picture: 'https://twitter.com/KimMaida/profile_image', },
+    { id: 'g7', maxScore: 55, name: 'Luke Oliff', picture: 'https://twitter.com/mroliff/profile_image', },
+    { id: 'h8', maxScore: 146, name: 'Sebastian Peyrott', picture: 'https://twitter.com/speyrott/profile_image', },
+  ];
   return (
     <svg
       id="aliens-go-home-canvas"
@@ -35,13 +46,7 @@ const Canvas = (props) => {
         <g>
           <StartGame onClick={() => props.startGame()} />
           <Title />
-        </g>
-      }
-
-      { props.gameState.started &&
-        <g>
-          <FlyingObject position={{x: -150, y: -300}}/>
-          <FlyingObject position={{x: 150, y: -300}}/>
+          <Leaderboard currentPlayer={leaderboard[6]} authenticate={signIn} leaderboard={leaderboard} />
         </g>
       }
 
